@@ -1,5 +1,12 @@
 language: ruby
-rvm: 2.4.4
-script:
-  - "bundle exec rake spec"
-  - "bundle exec cucumber"
+rvm:
+  - 2.4.4
+  script:
+  - bundle install
+  - rspec
+  - cucumber
+  - git push https://heroku:bbe86632-4a76-4451-9393-9460c8db502d@git.heroku.com/dots-andboxes.git HEAD
+
+definitions:
+  caches:
+    bundler: ./Gemfile
