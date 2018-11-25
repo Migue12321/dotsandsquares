@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/game.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+
+    <body style="height:100%;
+    width:100%;
+    background-color:whitesmoke;">
+        <div class="players">
+          <h5 id="u_0" class=" <%=@color1%>" style="color: <%=@color1%>;"><%=@username %>: 0pts</h5>
+          <h5 id="u_1" class=" <%=@color2%>" style="color: <%=@color2%>;"><%=@username2 %>: 0pts</h5>
+        </div>
+        <div id="table" class="container">
+          <% for i in (1..$size) do %>
+          <div class="column">
+            <% for j in (1..$size) do %>
+                <div id=<%= i.to_s + j.to_s%> class="instructions">
+                  <button id=<%= i.to_s + j.to_s + "up"%> class="btn white"><i class="material-icons icon-black">keyboard_arrow_up</i></button>
+                  <button id=<%= i.to_s + j.to_s + "down"%> class="btn white"><i class="material-icons icon-black">keyboard_arrow_down</i></button>
+                  <br><button id=<%= i.to_s + j.to_s + "left"%> class="btn white"><i class="material-icons icon-black">keyboard_arrow_left</i></button>
+                  <button id=<%= i.to_s + j.to_s + "right"%> class="btn white"><i class="material-icons icon-black">keyboard_arrow_right</i></button>
+                </div>
+                <script>
+                  $('<%= "#" + i.to_s + j.to_s + "up"%>').click(function() {
+                    $('<%= "#" + i.to_s + j.to_s%>').css({
+                      'border-top-color': 'black'
+                    });
+                    $('<%= "#" + i.to_s + (j-1).to_s%>').css({
+                      'border-bottom-color': 'black'
+                    });
+                    $('<%= "#" + i.to_s + j.to_s + "up"%>').hide();
+                    $('<%= "#" + i.to_s + (j-1).to_s + "down"%>').hide();
+                    var dat = {
+                      posX: <%= i%>,
+                      posY: <%= j%>,
+                      or: "U",
+                    };
+                    $.ajax({
+                      type: 'POST',
+                      url: 'game/point',
+                      async: false,
+                      data: dat,
+                    });
+                    $.ajax({
+                      type: 'GET',
+                      url: 'game/point',
+                      async: false,
+                      success: function(users){
+                        $.each(users, function(i, user){
+                          $('#u_'+i.toString()).text(user.username + ": " + user.score.toString() + " pts")
+                          if (user.turno == i+1) {
+                            $('#u_'+i.toString()).css({
+                              'font-weight': 'bold'
+                            });
+                          }
+                          else{
+                            $('#u_'+i.toString()).css({
+                              'font-weight': 'normal'
+                            });
+                          }
+                        });
+                      }
+                    });
+                  });
+                  $('<%= "#" + i.to_s + j.to_s + "down"%>').click(function() {
+                    $('<%= "#" + i.to_s + j.to_s%>').css({
+                      'border-bottom-color': 'black'
+                    });
+                    $('<%= "#" + i.to_s + (j+1).to_s%>').css({
+                      'border-top-color': 'black'
+                    });
+                    $('<%= "#" + i.to_s + j.to_s + "down"%>').hide();
+                    $('<%= "#" + i.to_s + (j+1).to_s + "up"%>').hide();
+                    var dat = {
+                      posX: <%= i%>,
+                      posY: <%= j%>,
+                      or: "D",
+                    };
+                    $.ajax({
+                      type: 'POST',
+                      url: 'game/point',
+                      async: false,
+                      data: dat,
+                    });
+                    $.ajax({
+                      type: 'GET',
+                      url: 'game/point',
+                      async: false,
+                      success: function(users){
+                        $.each(users, function(i, user){
+                          $('#u_'+i.toString()).text(user.username + ": " + user.score.toString() + " pts")
+                          if (user.turno == i+1) {
+                            $('#u_'+i.toString()).css({
+                              'font-weight': 'bold'
+                            });
+                          }
+                          else{
+                            $('#u_'+i.toString()).css({
+                              'font-weight': 'normal'
+                            });
+                          }
+                        });
+                      },
+                      error: function(){
+                        alert("La cague");
+                      }
+                    });
+                  });
+                  $('<%= "#" + i.to_s + j.to_s + "left"%>').click(function() {
+                    $('<%= "#" + i.to_s + j.to_s%>').css({
+                      'border-left-color': 'black'
+                    });
+                    $('<%= "#" + (i-1).to_s + j.to_s%>').css({
+                      'border-right-color': 'black'
+                    });
+                    $('<%= "#" + i.to_s + j.to_s + "left"%>').hide();
+                    $('<%= "#" + (i-1).to_s + j.to_s + "right"%>').hide();
+                    var dat = {
+                      posX: <%= i%>,
+                      posY: <%= j%>,
+                      or: "L",
+                    };
+                    $.ajax({
+                      type: 'POST',
+                      url: 'game/point',
+                      async: false,
+                      data: dat,
+                    });
+                    $.ajax({
+                      type: 'GET',
+                      url: 'game/point',
+                      async: false,
+                      success: function(users){
+                        $.each(users, function(i, user){
+                          $('#u_'+i.toString()).text(user.username + ": " + user.score.toString() + " pts")
+                          if (user.turno == i+1) {
+                            $('#u_'+i.toString()).css({
+                              'font-weight': 'bold'
+                            });
+                          }
+                          else{
+                            $('#u_'+i.toString()).css({
+                              'font-weight': 'normal'
+                            });
+                          }
+                        });
+                      },
+                      error: function(){
+                        alert("La cague");
+                      }
+                    });
+                  });
+                  $('<%= "#" + i.to_s + j.to_s + "right"%>').click(function() {
+                    $('<%= "#" + i.to_s + j.to_s%>').css({
+                      'border-right-color': 'black'
+                    });
+                    $('<%= "#" + (i+1).to_s + j.to_s%>').css({
+                      'border-left-color': 'black'
+                    });
+                    $('<%= "#" + i.to_s + j.to_s + "right"%>').hide();
+                    $('<%= "#" + (i+1).to_s + j.to_s + "left"%>').hide();
+                    var dat = {
+                      posX: <%= i%>,
+                      posY: <%= j%>,
+                      or: "R",
+                    };
+                    $.ajax({
+                      type: 'POST',
+                      url: 'game/point',
+                      async: false,
+                      data: dat,
+                    });
+                    $.ajax({
+                      type: 'GET',
+                      url: 'game/point',
+                      async: false,
+                      success: function(users){
+                        $.each(users, function(i, user){
+                          $('#u_'+i.toString()).text(user.username + ": " + user.score.toString() + " pts")
+                          if (user.turno == i+1) {
+                            $('#u_'+i.toString()).css({
+                              'font-weight': 'bold'
+                            });
+                          }
+                          else{
+                            $('#u_'+i.toString()).css({
+                              'font-weight': 'normal'
+                            });
+                          }
+                        });
+                      },
+                      error: function(){
+                        alert("La cague");
+                      }
+                    });
+                  });
+                </script>
+            <% end %>
+          </div>
+          <%end%>
+        </div>
+        <!--JavaScript at end of body for optimized loading-->
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+    </body>
+  </html>

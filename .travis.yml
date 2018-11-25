@@ -1,0 +1,22 @@
+image: ruby:2.4.4
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - bundler
+        script: # Modify the commands below to build your repository.
+        - step:
+          # set HEROKU_API_KEY and HEROKU_APP_NAME environment variables
+          # set clone `depth: full' as described here: https://confluence.atlassian.com/x/Y9-5Mw
+          name: Deploy to Heroku
+          deployment: test   # set to test, staging or production
+          # trigger: manual  # uncomment to have a manual step
+          script:
+            - git push https://heroku:3898b553-c6eb-446b-a4ac-38577f1ce7d4Y@git.heroku.com/dots-andboxes.git HEAD
+
+          - bundle install
+
+definitions:
+  caches:
+    bundler: ./Gemfile

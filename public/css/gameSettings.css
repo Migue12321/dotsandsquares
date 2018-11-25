@@ -1,0 +1,34 @@
+body{
+    height:100%;
+    width:100%;
+    background-color:whitesmoke;
+}
+
+
+.mainContainer{
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: left;
+    margin: 4%;
+    padding: 2%;
+    position: initial;
+    border: 4px solid black;
+}
+
+.colorContainer{
+    
+    block-size: 30px;
+}
+
+.textContainer{
+    inline-size: 65%; 
+}
+#empezar{
+    margin-left: 50%;
+    
+}
+.numberContainer{
+   
+    margin-left: 34em;
+    inline-size: 187px;
+}

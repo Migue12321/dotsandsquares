@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <!--Import general.css-->
+      <link type="text/css" rel="stylesheet" href="css/general.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        <div class="div-General" style="position: absolute; top:20%; left:34%;">
+            <div align='center'>
+                <img src="images/DaS.png">
+            </div>
+            <h1 align='center'> <%=@title%></h1>
+            <form align='center' method="post" action="/players">
+                <button class="btn red darken-4" type="submit" name="action">
+                <i class="material-icons right">play_arrow</i> <%=@bottonName%>
+                </button>
+            </form>
+        </div>
+        <!--JavaScript at end of body for optimized loading-->
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+    </body>
+  </html>
