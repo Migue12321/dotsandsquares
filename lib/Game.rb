@@ -5,28 +5,74 @@ class Game
     $users = []
     $turno = 1
     $iteradorJugadores = 0
+    $size = 0
 
     def reset()
         $table = []
         $users = []
         $turno = 1
         $iteradorJugadores = 0
+        $size = 0
+        return true
     end
 
     def initGame (x,y)
         tam = x*y
+        $size = x
         for i in 1..tam do
             $table.push('0000F')
         end
         return $table
     end
 
-    def addScore(score)
-        usuario = $turno - 1  
-        user  = $users[usuario]
-        user.addScore(score)
-        return user.getScore()
-    end 
+    def dotsAndBoxes(posX,posY,orientation)
+        pos2 = 0
+        pos1 = ($size*(posX - 1)) + posY
+        result = -1
+        changePlayer = true
+        if orientation == 'U'
+          if (pos1-1) % $size != 0
+            pos2 = pos1 - 1
+            result = play('D', pos2)
+            if(result == 2)
+              changePlayer = false
+            end
+          end
+          elsif orientation == 'D'
+            if pos1 % $size != 0
+              pos2 = pos1 + 1
+              result = play('U', pos2)
+              if(result == 2)
+                changePlayer = false
+              end
+            end
+          elsif orientation == 'L'
+            if pos1 > $size
+              pos2 = pos1 - $size
+              result = play('R', pos2)
+              if(result == 2)
+                changePlayer = false
+              end
+            end
+          elsif orientation == 'R'
+          if pos1 <= (($size * $size) - $size)
+            pos2 = pos1 + $size 
+            puts pos2
+            result = play('L', pos2)
+            if(result == 2)
+              changePlayer = false
+            end
+          end
+        end
+        result = play(orientation, pos1)
+        if(result == 2)
+          changePlayer = false
+        end
+        if(changePlayer)
+          changePlayer()
+        end 
+        return true       
+    end
 
     def play(side,position)
         result = 1
@@ -121,4 +167,22 @@ class Game
     def getPlayers()
         $users
     end
+
+    def addScore(score)
+        usuario = $turno - 1  
+        user  = $users[usuario]
+        user.addScore(score)
+        return user.getScore()
+    end 
+
+    def gameOver()
+        game_over = true 
+        $table.each do |space|
+            if space[4]=='F'
+                game_over = false
+            end
+        end
+        return game_over    
+    end
+    
 end

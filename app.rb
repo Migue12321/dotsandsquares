@@ -8,7 +8,6 @@ set :public_folder, File.dirname(__FILE__) + '/static'
 class App < Sinatra::Base
 
     $game = Game.new()
-    $size
 
     get '/' do
       bienvenida=Bienvenida.new()
@@ -49,51 +48,55 @@ class App < Sinatra::Base
     end
 
     post '/game' do
-        $size=params[:size].to_i 
-        @username=params[:username]
-        @color1=params[:color1]
-        @username2=params[:username2]
-        @color2=params[:color2]
-        $game.initGame($size,$size)
-        $game.addUser(@username,@color1)
-        $game.addUser(@username2,@color2)
+        @size=params[:size].to_i 
+        $game.reset()
+        $game.initGame(@size,@size)
+        @qp=params[:qp].to_i 
+        puts @qp
+        if @qp == 2
+          @username1=params[:username1].to_s 
+          @color1=params[:color1].to_s
+          $game.addUser(@username1,@color1)
+          @username2=params[:username2].to_s 
+          @color2=params[:color2].to_s 
+          $game.addUser(@username2,@color2)
+        elsif @qp == 3
+          @username1=params[:username1].to_s 
+          @color1=params[:color1].to_s 
+          $game.addUser(@username1,@color1)
+          @username2=params[:username2].to_s 
+          @color2=params[:color2].to_s 
+          $game.addUser(@username2,@color2)
+          @username3=params[:username3].to_s 
+          @color3=params[:color3].to_s 
+          $game.addUser(@username3,@color3)
+        elsif @qp == 4
+          @username1=params[:username1].to_s 
+          @color1=params[:color1].to_s 
+          $game.addUser(@username1,@color1)
+          @username2=params[:username2].to_s 
+          @color2=params[:color2].to_s 
+          $game.addUser(@username2,@color2)
+          @username3=params[:username3].to_s 
+          @color3=params[:color3].to_s 
+          $game.addUser(@username3,@color3)
+          @username4=params[:username4].to_s 
+          @color4=params[:color4].to_s 
+          $game.addUser(@username4,@color4)
+        end
+        @users = $game.getPlayers()
         erb :game
-    end
+    end    
 
     post '/game/point' do
       @posX=params[:posX].to_i 
       @posY=params[:posY].to_i 
       @orientation=params[:or]
-      pos2 = 0
-      pos1 = ($size*(@posX - 1)) + @posY
-      if @orientation == 'U'
-        if (pos1-1) % $size != 0
-          pos2 = pos1 - 1
-          $game.play('D', pos2)
-        end
-      elsif @orientation == 'D'
-        if pos1 % $size != 0
-          pos2 = pos1 + 1
-          $game.play('U', pos2)
-        end
-      elsif @orientation == 'L'
-        if pos1 > $size
-          pos2 = pos1 - $size
-          $game.play('R', pos2)
-        end
-      elsif @orientation == 'R'
-        if pos1 < (($size * $size) - $size)
-          pos2 = pos1 + $size 
-          $game.play('L', pos2)
-        end
-      end
-      result = $game.play(@orientation, pos1)
-      if(result != 2)
-        $game.changePlayer()
-      end
+      $game.dotsAndBoxes(@posX,@posY,@orientation)
     end
 
     get '/game/point' do   
+      puts $game.gameOver()
       @us = $game.getPlayers()
       @users = '['
       @us.each do |user|

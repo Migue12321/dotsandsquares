@@ -87,4 +87,23 @@ describe Game do
         expect(@Game.addScore(1)).to eq 3
     end
 
+    it "Cuando se realiza una jugada llamando a dotsAndBoxes en la posicion U deberia retornar true si esta fue correcta" do
+        expect(@Game.dotsAndBoxes(2,1,'U')).to eq true
+    end
+
+    it "Cuando se realiza una jugada llamando a dotsAndBoxes en la posicion D deberia retornar true si esta fue correcta" do
+        expect(@Game.dotsAndBoxes(2,1,'D')).to eq true
+    end
+
+    it "Cuando se realiza una jugada llamando a dotsAndBoxes en la posicion L deberia retornar true si esta fue correcta" do
+        expect(@Game.dotsAndBoxes(2,1,'L')).to eq true
+    end
+
+    it "Cuando se realiza una jugada llamando a dotsAndBoxes en la posicion R deberia retornar true si esta fue correcta" do
+        expect(@Game.dotsAndBoxes(2,1,'R')).to eq true
+    end
+
+    it "Cuando quiera resetear el juego llamo a la funcion reset y esta me devuelve true si fue correcta" do
+        expect(@Game.reset()).to eq true
+    end
 end
