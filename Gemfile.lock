@@ -86,6 +86,13 @@ PLATFORMS
 DEPENDENCIES
   capybara
   cucumber
+  guard
+  guard-rspec
+  matts_tictactoe_core
+  nokogiri
+  pry
+  pry-nav
+  rack
   rspec
   simplecov
   simplecov-console

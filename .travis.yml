@@ -1,10 +1,5 @@
 language: ruby
-rvm:
-  - 2.2
-  - jruby
-  - 2.0.0-p247
-
+rvm: 2.4.4
 script:
-  -bundle install --jobs=3 --retry=3
-  - rspec
-  - cucumber
+  - "bundle exec rake spec"
+  - "bundle exec cucumber"
