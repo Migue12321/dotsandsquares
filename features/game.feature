@@ -2,15 +2,7 @@ Feature: Game
     Como jugador
     Quiero Ver el tablero 
     Para poder realizar una jugada
-
-    Scenario: Mostrar la pantalla
-        Given visito la pagina de juego
-        Then deberia ver una pagina con mis nombres de usuario
-
-    Scenario: Ver el tablero
-        Given visito la pagina de juego
-        Then deberia poder ver una tabla
-        
+      
     Scenario: Mostrar Jugador 1
         Given visito la pagina de gameSettings
         And llene el campo Jugador1: con el nombre "Bob" 
@@ -49,4 +41,4 @@ Feature: Game
         And aprieto el boton "11left" de la primera casilla
         And aprieto el boton "11right" de la primera casilla
         And aprieto el boton "11up" de la primera casilla
-        # Then deberia mostrar "Migue: 0 pts"
+        Then deberia mostrar "Migue: 1pts"

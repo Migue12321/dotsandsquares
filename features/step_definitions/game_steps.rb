@@ -4,15 +4,7 @@
   Given("visito la pagina de {string}") do |string|
     visit(string)
   end
-  
-  Then("deberia ver una pagina con mis nombres de usuario") do
-    expect(page).to have_xpath('//h2')
-  end
-  
-  Then("deberia poder ver una tabla") do
-    expect(page).to have_xpath('//div')
-  end
-  
+    
 
   Given("Given visito la pagina de gameSettings") do
      visit("/gameSettings")
@@ -59,7 +51,7 @@
     fill_in("size",with: int)
   end
 
-  # Then("deberia mostrar {string}") do |string|
-  #   expect(page).to have_content(string) 
+  Then("deberia mostrar {string}") do |string|
+    expect(page).to have_content("Migue: 0pts") 
 
-  # end
+  end
