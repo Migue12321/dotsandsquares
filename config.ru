@@ -1,5 +1,5 @@
 require 'rubygems'
 require 'sinatra'
-require 'app.rb'
 require './app'
+require 'httparty'
 run Sinatra::Application

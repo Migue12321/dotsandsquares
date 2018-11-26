@@ -6,13 +6,7 @@ set :public_folder, File.dirname(__FILE__) + '/static'
 
 
 class App < Sinatra::Base
-
-  configure do
-    set :server, :puma
-    set :port, 8000
-    set :server_settings, :Threads => '0:16', :Verbose => true
-  end
-
+  
     $game = Game.new()
 
     get '/' do
