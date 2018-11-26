@@ -42,11 +42,11 @@ Feature: Game
     
     Scenario: Marcar punto
         Given visito la pagina de gameSettings
-        And llene el campo Jugador1: con el nombre "Bob" 
+        And llene el campo Jugador1: con el nombre "Migue" 
         And selecciono un tablero de 3
         And presione el boton "Empezar" que me llevo a la pagina /game
         And aprieto el boton "11down" de la primera casilla
         And aprieto el boton "11left" de la primera casilla
         And aprieto el boton "11right" de la primera casilla
         And aprieto el boton "11up" de la primera casilla
-    
+        # Then deberia mostrar "Migue: 0 pts"

@@ -58,3 +58,8 @@
   Given("selecciono un tablero de {int}") do |int|
     fill_in("size",with: int)
   end
+
+  # Then("deberia mostrar {string}") do |string|
+  #   expect(page).to have_content(string) 
+
+  # end
