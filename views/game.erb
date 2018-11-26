@@ -9,7 +9,7 @@
       <link type="text/css" rel="stylesheet" href="css/game.css"  media="screen,projection"/>
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+      <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
     </head>
 
     <body style="height:100%;
@@ -33,7 +33,7 @@
                 <script>
                   $.ajax({
                       type: 'GET',
-                      url: 'https://dots-and-boxes2.herokuapp.com/game/point',
+                      url: 'game/point',
                       async: false,
                       success: function(users){
                         $.each(users, function(i, user){
@@ -68,13 +68,13 @@
                     };
                     $.ajax({
                       type: 'POST',
-                      url: 'https://dots-and-boxes2.herokuapp.com/game/point',
+                      url: 'game/point',
                       async: false,
                       data: dat,
                     });
                     $.ajax({
                       type: 'GET',
-                      url: 'https://dots-and-boxes2.herokuapp.com/game/point',
+                      url: 'game/point',
                       async: false,
                       success: function(users){
                         $.each(users, function(i, user){
@@ -110,13 +110,13 @@
                     };
                     $.ajax({
                       type: 'POST',
-                      url: 'https://dots-and-boxes2.herokuapp.com/game/point',
+                      url: 'game/point',
                       async: false,
                       data: dat,
                     });
                     $.ajax({
                       type: 'GET',
-                      url: 'https://dots-and-boxes2.herokuapp.com/game/point',
+                      url: 'game/point',
                       async: false,
                       success: function(users){
                         $.each(users, function(i, user){
@@ -152,13 +152,13 @@
                     };
                     $.ajax({
                       type: 'POST',
-                      url: 'https://dots-and-boxes2.herokuapp.com/game/point',
+                      url: 'game/point',
                       async: false,
                       data: dat,
                     });
                     $.ajax({
                       type: 'GET',
-                      url: 'https://dots-and-boxes2.herokuapp.com/game/point',
+                      url: 'game/point',
                       async: false,
                       success: function(users){
                         $.each(users, function(i, user){
@@ -194,13 +194,13 @@
                     };
                     $.ajax({
                       type: 'POST',
-                      url: 'https://dots-and-boxes2.herokuapp.com/game/point',
+                      url: 'game/point',
                       async: false,
                       data: dat,
                     });
                     $.ajax({
                       type: 'GET',
-                      url: 'https://dots-and-boxes2.herokuapp.com/game/point',
+                      url: 'game/point',
                       async: false,
                       success: function(users){
                         $.each(users, function(i, user){
