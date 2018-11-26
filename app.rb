@@ -95,7 +95,6 @@ class App < Sinatra::Base
     end
 
     get '/game/point' do   
-      puts $game.gameOver()
       @us = $game.getPlayers()
       @users = '['
       @us.each do |user|
