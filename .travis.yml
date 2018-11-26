@@ -1,7 +1,7 @@
 language: ruby
 rvm: 2.4.4
+before_install:
+  - gem install bundler
 script:
-  - gem uninstall bundler
-  - gem install bundler -v 1.17.1
   - bundle exec rake spec
   - bundle exec cucumber
