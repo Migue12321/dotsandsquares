@@ -57,7 +57,6 @@ class Game
           elsif orientation == 'R'
           if pos1 <= (($size * $size) - $size)
             pos2 = pos1 + $size 
-            puts pos2
             result = play('L', pos2)
             if(result == 2)
               changePlayer = false

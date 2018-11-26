@@ -52,7 +52,6 @@ class App < Sinatra::Base
         $game.reset()
         $game.initGame(@size,@size)
         @qp=params[:qp].to_i 
-        puts @qp
         if @qp == 2
           @username1=params[:username1].to_s 
           @color1=params[:color1].to_s
@@ -100,7 +99,7 @@ class App < Sinatra::Base
       @us = $game.getPlayers()
       @users = '['
       @us.each do |user|
-        @users = @users + '{ "username":"' + user.getUsername + '", "score":' + user.getScore().to_s + ', "turno":' + $game.getTurno().to_s + '},'
+        @users = @users + '{ "username":"' + user.getUsername + '", "score":' + user.getScore().to_s + ', "turno":' + $game.getTurno().to_s + ', "gameover":' + $game.gameOver().to_s + '},'
       end
       @users = @users[0..-2] + ']'
       content_type :json
