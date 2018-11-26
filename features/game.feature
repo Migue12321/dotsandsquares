@@ -27,10 +27,12 @@ Feature: Game
         When presione el boton "Empezar" que me llevo a la pagina /game
         Then deberia mostrar el nombre con el color "red"
 
-    Scenario: Marcar jugada
-        Given visito la pagina de "/game-settings" para seleccionar un tablero de 3
+    Scenario: Realizar jugada
+        Given visito la pagina de "/game-settings"
+        And selecciono un tablero de 3
+        And presione el boton "Empezar" que me llevo a la pagina /game
         When aprieto el boton "11up" de la primera casilla
-        Then marca una linea en la parte superior de la casilla  
+        Then marca una linea "black" en la parte superior de la casilla  
     
     Scenario: Marcar punto
         Given visito la pagina de gameSettings
