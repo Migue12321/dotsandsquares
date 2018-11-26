@@ -36,6 +36,17 @@ Feature: Game
         Then deberia mostrar el nombre con el color "red"
 
     Scenario: Marcar jugada
-        Given visito la pagina de "/game-settings" y selecciono un tablero de 3
+        Given visito la pagina de "/game-settings" para seleccionar un tablero de 3
         When aprieto el boton "11up" de la primera casilla
         Then marca una linea en la parte superior de la casilla  
+    
+    Scenario: Marcar punto
+        Given visito la pagina de gameSettings
+        And llene el campo Jugador1: con el nombre "Bob" 
+        And selecciono un tablero de 3
+        And presione el boton "Empezar" que me llevo a la pagina /game
+        And aprieto el boton "11down" de la primera casilla
+        And aprieto el boton "11left" de la primera casilla
+        And aprieto el boton "11right" de la primera casilla
+        And aprieto el boton "11up" de la primera casilla
+    

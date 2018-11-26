@@ -41,7 +41,7 @@
   Then("deberia mostrar el nombre con el color {string}") do |string|
    page.assert_all_of_selectors('h5.'+string) 
   end        
-  Given("visito la pagina de {string} y selecciono un tablero de {int}") do |string, int|
+  Given("visito la pagina de {string} para seleccionar un tablero de {int}") do |string, int|
     visit(string)
     fill_in("size",with: int)
     click_button("Empezar")
@@ -54,4 +54,7 @@
   Then("marca una linea en la parte superior de la casilla") do
       page.assert_all_of_selectors('button#11style="border-top-color': 'black"') 
   end
-  
+
+  Given("selecciono un tablero de {int}") do |int|
+    fill_in("size",with: int)
+  end
