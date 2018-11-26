@@ -11,12 +11,10 @@ Feature: Game Settings
         Given visito la pagina de numerojugadores
         And presiono el boton de jugadores "2"
         Then deberia direccionarme a la pagina '/game-settings' 
+
     Scenario: ingresar datos de 3 personas
         Given visito la pagina de numerojugadores
         And presiono el boton de jugadores "3"
         Then deberia direccionarme a la pagina '/game-settings-3' 
-    Scenario: ingresar datos de 3 personas
-        Given visito la pagina de numerojugadores
-        And presiono el boton de jugadores "4"
-        Then deberia direccionarme a la pagina '/game-settings-4' 
-    
+
+ 
