@@ -6,7 +6,7 @@ set :public_folder, File.dirname(__FILE__) + '/static'
 
 
 class App < Sinatra::Base
-  
+
     $game = Game.new()
 
     get '/' do
